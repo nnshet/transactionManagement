@@ -1,0 +1,263 @@
+
+ The Input file is: b1 r1 (Y) w1 (Y) r1 (Z) b2 r2 (X) w2 (X) w1 (Z) e1 r2 (Y) b3 r3 (Z) w3 (Z); w2 (Y) e2 r3 (X) w3 (X) e3 
+ Current operation - b1
+ Transaction 1 is started
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Current operation - r1 (Y)
+ Operation r1 (Y)is successful.
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Y - r - [1] - []
+ Current operation - w1 (Y)
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Y - w - [1] - []
+ Current operation - r1 (Z)
+ Operation r1 (Z)is successful.
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y, Z] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Y - w - [1] - []
+ Z - r - [1] - []
+ Current operation - b2
+ Transaction 2 is started
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y, Z] - []
+ 2 - 2 - active - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Y - w - [1] - []
+ Z - r - [1] - []
+ Current operation - r2 (X)
+ Operation r2 (X)is successful.
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y, Z] - []
+ 2 - 2 - active - [X] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ X - r - [2] - []
+ Y - w - [1] - []
+ Z - r - [1] - []
+ Current operation - w2 (X)
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y, Z] - []
+ 2 - 2 - active - [X] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ X - w - [2] - []
+ Y - w - [1] - []
+ Z - r - [1] - []
+ Current operation - w1 (Z)
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y, Z] - []
+ 2 - 2 - active - [X] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ X - w - [2] - []
+ Y - w - [1] - []
+ Z - w - [1] - []
+ Current operation - e1
+ Unlock all the items held by Transaction 1
+ Remove the entry of item Y from lock table
+ Remove the entry of item Z from lock table
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - active - [X] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ X - w - [2] - []
+ Current operation - r2 (Y)
+ Operation r2 (Y)is successful.
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - active - [X, Y] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ X - w - [2] - []
+ Y - r - [2] - []
+ Current operation - b3
+ Transaction 3 is started
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - active - [X, Y] - []
+ 3 - 3 - active - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ X - w - [2] - []
+ Y - r - [2] - []
+ Current operation - r3 (Z)
+ Operation r3 (Z)is successful.
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - active - [X, Y] - []
+ 3 - 3 - active - [Z] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ X - w - [2] - []
+ Y - r - [2] - []
+ Z - r - [3] - []
+ Current operation - w3 (Z);
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - active - [X, Y] - []
+ 3 - 3 - active - [Z] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ X - w - [2] - []
+ Y - r - [2] - []
+ Z - w - [3] - []
+ Current operation - w2 (Y)
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - active - [X, Y] - []
+ 3 - 3 - active - [Z] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ X - w - [2] - []
+ Y - w - [2] - []
+ Z - w - [3] - []
+ Current operation - e2
+ Unlock all the items held by Transaction 2
+ Remove the entry of item X from lock table
+ Remove the entry of item Y from lock table
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - committed - [] - []
+ 3 - 3 - active - [Z] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Z - w - [3] - []
+ Current operation - r3 (X)
+ Operation r3 (X)is successful.
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - committed - [] - []
+ 3 - 3 - active - [X, Z] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ X - r - [3] - []
+ Z - w - [3] - []
+ Current operation - w3 (X)
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - committed - [] - []
+ 3 - 3 - active - [X, Z] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ X - w - [3] - []
+ Z - w - [3] - []
+ Current operation - e3
+ Unlock all the items held by Transaction 3
+ Remove the entry of item X from lock table
+ Remove the entry of item Z from lock table
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - committed - [] - []
+ 3 - 3 - committed - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - committed - [] - []
+ 3 - 3 - committed - [] - []

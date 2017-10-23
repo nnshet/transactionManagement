@@ -1,0 +1,255 @@
+
+ The Input file is: b1 r1 (Y) w1 (Y) r1 (Z) b2 r2 (X) w2 (X) w1 (Z) r2 (Y) b3 r3 (Z) e1 w3 (Z); w2 (Y) e2 r3 (X) w3 (X) e3 
+ Current operation - b1
+ Transaction 1 is started
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Current operation - r1 (Y)
+ Operation r1 (Y)is successful.
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Y - r - [1] - []
+ Current operation - w1 (Y)
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Y - w - [1] - []
+ Current operation - r1 (Z)
+ Operation r1 (Z)is successful.
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y, Z] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Y - w - [1] - []
+ Z - r - [1] - []
+ Current operation - b2
+ Transaction 2 is started
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y, Z] - []
+ 2 - 2 - active - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Y - w - [1] - []
+ Z - r - [1] - []
+ Current operation - r2 (X)
+ Operation r2 (X)is successful.
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y, Z] - []
+ 2 - 2 - active - [X] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ X - r - [2] - []
+ Y - w - [1] - []
+ Z - r - [1] - []
+ Current operation - w2 (X)
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y, Z] - []
+ 2 - 2 - active - [X] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ X - w - [2] - []
+ Y - w - [1] - []
+ Z - r - [1] - []
+ Current operation - w1 (Z)
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y, Z] - []
+ 2 - 2 - active - [X] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ X - w - [2] - []
+ Y - w - [1] - []
+ Z - w - [1] - []
+ Current operation - r2 (Y)
+ Using wait/die protocol
+ Operation r2 (Y)is aborted. The transaction 2 is aborted as it is younger one
+ Unlock all the items held by Transaction 2
+ Remove the entry of item X from lock table
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y, Z] - []
+ 2 - 2 - aborted - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Y - w - [1] - []
+ Z - w - [1] - []
+ Current operation - b3
+ Transaction 3 is started
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y, Z] - []
+ 2 - 2 - aborted - [] - []
+ 3 - 3 - active - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Y - w - [1] - []
+ Z - w - [1] - []
+ Current operation - r3 (Z)
+ Using wait/die protocol
+ Operation r3 (Z)is aborted. The transaction 3 is aborted as it is younger one
+ Unlock all the items held by Transaction 3
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - active - [Y, Z] - []
+ 2 - 2 - aborted - [] - []
+ 3 - 3 - aborted - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Y - w - [1] - []
+ Z - w - [1] - []
+ Current operation - e1
+ Unlock all the items held by Transaction 1
+ Remove the entry of item Y from lock table
+ Remove the entry of item Z from lock table
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - aborted - [] - []
+ 3 - 3 - aborted - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Current operation - w3 (Z);
+ Current transaction 3 is already Aborted. Ignoring its operations
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - aborted - [] - []
+ 3 - 3 - aborted - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Current operation - w2 (Y)
+ Current transaction 2 is already Aborted. Ignoring its operations
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - aborted - [] - []
+ 3 - 3 - aborted - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Current operation - e2
+ Current transaction 2 is already Aborted. Ignoring its operations
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - aborted - [] - []
+ 3 - 3 - aborted - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Current operation - r3 (X)
+ Current transaction 3 is already Aborted. Ignoring its operations
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - aborted - [] - []
+ 3 - 3 - aborted - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Current operation - w3 (X)
+ Current transaction 3 is already Aborted. Ignoring its operations
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - aborted - [] - []
+ 3 - 3 - aborted - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ Current operation - e3
+ Current transaction 3 is already Aborted. Ignoring its operations
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - aborted - [] - []
+ 3 - 3 - aborted - [] - []
+
+ LOCK TABLE
+ Item Name - Lock Mode - Locking Transcations - Waiting Transactions 
+ -------------------------------------------------------------------------------------
+ TRANSACTION TABLE 
+ 
+Transcation id - Timestamp - State - Items locked - pending operations 
+ -------------------------------------------------------------------------------------
+ 1 - 1 - committed - [] - []
+ 2 - 2 - aborted - [] - []
+ 3 - 3 - aborted - [] - []
